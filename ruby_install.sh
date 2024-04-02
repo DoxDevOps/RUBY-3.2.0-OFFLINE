@@ -4,14 +4,14 @@
 sudo tar -xvf ruby-3.2.0.b2z
 
 # Step 2: Copy Ruby to RVM directory if it does not exist
-if [ ! -d "/usr/share/rvm/rubies/ruby-3.2.0" ]; then
+if [ ! -d "/usr/share/rvm/rubies/" ]; then
     sudo cp -r ruby-3.2.0 /usr/share/rvm/rubies/
 else
     echo "Ruby directory already exists in RVM directory. Skipping copy...."
 fi
 
 # Step 3: Copy Ruby directory to ~/.rvm/wrappers if it does not exist
-if [ ! -d "$HOME/.rvm/wrappers/ruby-3.2.0" ]; then
+if [ ! -d "$HOME/.rvm/wrappers/" ]; then
     cp -r ruby-3.2.0 "$HOME/.rvm/wrappers"
 else
     echo "Ruby directory already exists in wrappers directory. Skipping copy...."
