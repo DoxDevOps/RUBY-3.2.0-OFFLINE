@@ -13,10 +13,16 @@ fi
 # Step 3: Copy Ruby directory to ~/.rvm/wrappers if it does not exist
 if [ ! -d "$HOME/.rvm/wrappers/ruby-3.2.0" ]; then
     cp -r ruby-3.2.0 "$HOME/.rvm/wrappers"
-elif [ ! -d "$HOME/.rvm/rubies/ruby-3.2.0" ]; then
-    cp -r ruby-3.2.0 "$HOME/.rvm/rubies/"
 else
     echo "Ruby directory already exists. Skipping copy...."
+fi
+
+if [ ! -d "$HOME/.rvm/rubies/ruby-3.2.0" ]; then
+    cp -r ruby-3.2.0 "$HOME/.rvm/rubies/"
+elif [ ! -d "$HOME/.rvm/rubies" ]; then
+    echo "Rubies directory not found. Skipping copy...."
+else
+    echo "Ruby directory already exists in ~/.rvm/rubies directory"
 fi
 
 # Step 4: Source RVM script to ensure proper initialization
