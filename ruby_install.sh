@@ -4,17 +4,19 @@
 sudo tar -xvf ruby-3.2.0.b2z
 
 # Step 2: Copy Ruby to RVM directory if it does not exist
-if [ ! -d "/usr/share/rvm/rubies/" ]; then
+if [ ! -d "/usr/share/rvm/rubies/ruby-3.2.0" ]; then
     sudo cp -r ruby-3.2.0 /usr/share/rvm/rubies/
 else
     echo "Ruby directory already exists in RVM directory. Skipping copy...."
 fi
 
 # Step 3: Copy Ruby directory to ~/.rvm/wrappers if it does not exist
-if [ ! -d "$HOME/.rvm/wrappers/" ]; then
+if [ ! -d "$HOME/.rvm/wrappers/ruby-3.2.0" ]; then
     cp -r ruby-3.2.0 "$HOME/.rvm/wrappers"
+elif [ ! -d "$HOME/.rvm/rubies/ruby-3.2.0" ]; then
+    cp -r ruby-3.2.0 "$HOME/.rvm/rubies/"
 else
-    echo "Ruby directory already exists in wrappers directory. Skipping copy...."
+    echo "Ruby directory already exists. Skipping copy...."
 fi
 
 # Step 4: Source RVM script to ensure proper initialization
@@ -22,3 +24,10 @@ source "$HOME/.rvm/scripts/rvm"
 
 # Step 5: Regenerate RVM wrappers
 rvm wrapper regenerate
+# Step 6 : Create gemset
+rvm use ruby-3.2.0@my_gemset --create
+echo "Gemset created"
+
+# Step 7 : use 3.2.0
+rvm use ruby-3.2.0@my_gemset
+echo "RVM use to Ruby-3.2.0"
