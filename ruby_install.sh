@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Step 1: Extract the file
-sudo tar -xvf ruby-3.2.0.b2z
+sudo tar -xvf ruby-3.2.0.tar.bz2
 
 # Step 2: Copy Ruby to RVM directory if it does not exist
 if [ ! -d "/usr/share/rvm/rubies/ruby-3.2.0" ]; then
@@ -14,9 +14,9 @@ fi
 if [ ! -d "$HOME/.rvm/wrappers/ruby-3.2.0" ]; then
     cp -r ruby-3.2.0 "$HOME/.rvm/wrappers"
 else
-    echo "Ruby directory already exists. Skipping copy...."
+    echo "Ruby directory already exists in wrappers. Skipping copy...."
 fi
-
+# Step 3: Copy Ruby directory to ~/.rvm/rubies if it does not exist
 if [ ! -d "$HOME/.rvm/rubies/ruby-3.2.0" ]; then
     cp -r ruby-3.2.0 "$HOME/.rvm/rubies/"
 elif [ ! -d "$HOME/.rvm/rubies" ]; then
